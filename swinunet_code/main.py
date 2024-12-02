@@ -15,7 +15,7 @@ def parse_args():
    # 파일 경로 관련 인자
     parser.add_argument('--train_csv', type=str, default='../swin_data/Train_Data.csv', help='Training CSV file path')
     parser.add_argument('--val_csv', type=str, default='../swin_data/Validation_Data.csv', help='Validation CSV file path')
-    parser.add_argument('--test_csv', type=str, default='../swin_data/Test_Data_copy.csv', help='Test CSV file path')
+    parser.add_argument('--test_csv', type=str, default='../swin_data/Test_Data.csv', help='Test CSV file path')
     parser.add_argument('--checkpoint_path', type=str, default='../model_swinvit.pt', help='Checkpoint file path')
     parser.add_argument('--checkpoint_ssl',type=str, default='../model_swinvit.pt', help='SSL .pt path for training, 이건 SSL pretrained 완료 된 pt')
     parser.add_argument('--ssl_checkpoint_path',type=str, default=' ', help='SSL pretrain path')
