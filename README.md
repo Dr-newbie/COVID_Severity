@@ -30,6 +30,7 @@ For any issues or inquiries, feel free to open a GitHub issue.
 
 ---
 # Architecture
+<img src="https://github.com/user-attachments/assets/2be75597-d7ad-4cf3-8dda-cba198c15d9c" width="600" height="400"/>
 
 ## Multimodality Model
 The multi-modal model contains:
