@@ -112,6 +112,9 @@ python main.py --mode test_with_lora --test_csv path/to/test.csv \
 ---
 # Results
 1. Accuracy plots: Prediction results with confusion matrix (sample results with 1e-08, 1000epoch, tested with LoRA+SSL+Mult-modality model)
+
 ![confusion_matrix_epoch_1_acc_60 32](https://github.com/user-attachments/assets/95ff5123-cf05-4bb9-ae2b-68b9ea16a3d9)
+
 2. Prediction csv: Prediction results recorded in csv files
+
 3. Attention map : To be updated...
