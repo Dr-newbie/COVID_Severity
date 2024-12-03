@@ -70,20 +70,23 @@ pip install -r requirements.txt
 ---
 # Commands
 
+### You must designate your data directory with --base_path argument
+
+
 ### Train
 Train the model using both 3D image and cytokine data
 ~~~python
 python main.py --mode train --train_csv path/to/train.csv --val_csv path/to/val.csv \
 --img_size 96 --batch_size 2 --learning_rate 1e-6 --epochs 30 \
---checkpoint_path path/to/checkpoint.pt --transform true
+--checkpoint_path path/to/checkpoint.pt --transform true \ --base_path final/1st/dataset
 ~~~
 
 ### Self-Supervised Learning (SSL) Training
 Pretrain the encoder using SSL
 ~~~python
 python main.py --mode ssl_train --ssl_train_csv path/to/ssl_train.csv \
---ssl_checkpoint_path path/to/ssl_checkpoint.pt --ssl_epochs 100 \
---learning_rate 1e-4 --batch_size 2
+--ssl_checkpoint_path path/to/ssl_checkpoint.pt --ssl_epochs 100 \ 
+--learning_rate 1e-4 --batch_size 2 \ --base_path final/1st/dataset
 ~~~
 
 ### Fine-Tuning with LoRA
@@ -91,21 +94,21 @@ Fine-tune the model with LoRA layers
 ~~~python
 python main.py --mode fine_tune_with_lora --train_csv path/to/train.csv --val_csv path/to/val.csv \
 --checkpoint_path path/to/checkpoint.pt --lora_saved_path path/to/lora_weights.pt \
---r 1 --alpha 4 --batch_size 2 --epochs 20
+--r 1 --alpha 4 --batch_size 2 --epochs 20  \ --base_path final/1st/dataset
 ~~~
 
 ### Test
 Run inference and generate attention maps (Attention maps need update)
 ~~~python
 python main.py --mode test --test_csv path/to/test.csv \
---checkpoint_path path/to/checkpoint.pt --feature_extract medcam
+--checkpoint_path path/to/checkpoint.pt --feature_extract medcam  \ --base_path final/1st/dataset
 ~~~
 
 ### Test with LoRA
 Run inference with LoRA applied
 ~~~python
 python main.py --mode test_with_lora --test_csv path/to/test.csv \
---lora_saved_path path/to/lora_weights.pt --r 1 --alpha 4 --feature_extract attention_map
+--lora_saved_path path/to/lora_weights.pt --r 1 --alpha 4 --feature_extract attention_map  \ --base_path final/1st/dataset
 ~~~
 
 
