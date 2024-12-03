@@ -3,7 +3,7 @@ from torch.cuda.amp import autocast
 from tqdm import tqdm
 from utils.augments import aug_rand  # 필요한 경우 추가로 import
 
-def ssl_train_epoch(ssl_model, train_loader, optimizer, criterion_ssl, scaler, device, epoch):
+def ssl_train_epoch(args, ssl_model, train_loader, optimizer, criterion_ssl, scaler, device, epoch):
     """
     Self-Supervised Learning(SSL) 모델 학습 루프 함수.
 
@@ -25,8 +25,8 @@ def ssl_train_epoch(ssl_model, train_loader, optimizer, criterion_ssl, scaler, d
 
     for img_inputs in progress_bar:
         img_inputs = img_inputs[0].to(device)
-        img_view1 = aug_rand(img_inputs)  # 데이터 증강
-        img_view2 = aug_rand(img_inputs)
+        img_view1 = aug_rand(args,img_inputs)  # 데이터 증강
+        img_view2 = aug_rand(args,img_inputs)
 
         optimizer.zero_grad()
         with autocast():

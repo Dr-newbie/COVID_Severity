@@ -4,7 +4,8 @@ from torch.utils.data import DataLoader
 from datasets.dataset import MedicalImageWithQuantDataset
 from datasets.transforms import get_transforms
 from models.Multimodal import MultiModalAttentionModel
-from test_utils import test_model, test_model_attention
+from test_utils.test_model import test_model
+from test_utils.test_model_attention  import test_model_attention
 
 
 def test(args, device):
@@ -25,7 +26,7 @@ def test(args, device):
 
     # 데이터 변환 및 데이터셋 생성
     test_transforms = get_transforms(args.transform, args.img_size, is_train=False)
-    test_dataset = MedicalImageWithQuantDataset(csv_file=args.test_csv, image_transform=test_transforms, img_size=args.img_size)
+    test_dataset = MedicalImageWithQuantDataset(csv_file=args.test_csv, image_transform=test_transforms, img_size=args.img_size, base_path=args.base_path)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
 
     # 학습된 가중치 로드

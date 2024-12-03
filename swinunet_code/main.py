@@ -15,12 +15,13 @@ def parse_args():
    # 파일 경로 관련 인자
     parser.add_argument('--train_csv', type=str, default='../swin_data/Train_Data.csv', help='Training CSV file path')
     parser.add_argument('--val_csv', type=str, default='../swin_data/Validation_Data.csv', help='Validation CSV file path')
-    parser.add_argument('--test_csv', type=str, default='../swin_data/Test_Data.csv', help='Test CSV file path')
+    parser.add_argument('--test_csv', type=str, default='../swin_data/Test_Data_copy.csv', help='Test CSV file path')
     parser.add_argument('--checkpoint_path', type=str, default='../model_swinvit.pt', help='Checkpoint file path')
     parser.add_argument('--checkpoint_ssl',type=str, default='../model_swinvit.pt', help='SSL .pt path for training, 이건 SSL pretrained 완료 된 pt')
     parser.add_argument('--ssl_checkpoint_path',type=str, default=' ', help='SSL pretrain path')
     parser.add_argument('--ssl_train_csv', type=str, default='../swin_data/filtered_nifti_cleaned.csv', help='Training CSV file path')
     parser.add_argument('--pretrained_weights', type=str, help='Path to pretrained weights for SSL pretrain')
+    parser.add_argument('--base_path', type=str, default='final/1st/dataset',required=True, help='Base path for dataset')
 
 
     # SSL 관련 인자
@@ -35,7 +36,7 @@ def parse_args():
     parser.add_argument("--transform", type=str, help='Data augmentation, Resie, Rotate & Zoom', choices=['true','false']) # Data augmentation 관련 parser
 
     # 장치 설정 인자
-    parser.add_argument('--device', type=str,  help='Device to use for training')
+    parser.add_argument('--device', type=str, required=True,  help='Device to use for training')
 
     # 모델 파라미터 인자
     parser.add_argument('--feature_size', type=int, default=96, help='Feature size for SwinUNETR')

@@ -8,7 +8,8 @@ from datasets.transforms import get_transforms
 from models.Multimodal import MultiModalAttentionModel
 from utils.early_stopping import EarlyStopping
 from utils.plot_utils import plot_loss_accuracy  #need udate
-from train_utils import train_epoch, validate_epoch #need update
+from train_utils.train_epoch import train_epoch
+from train_utils.validate_epoch import validate_epoch #need update
 import pandas as pd
 
 
@@ -49,8 +50,8 @@ def train(args, device):
     train_transforms = get_transforms(args.transform, args.img_size, is_train=True)
     val_transforms = get_transforms(args.transform, args.img_size, is_train=False)
 
-    train_dataset = MedicalImageWithQuantDataset(csv_file=args.train_csv, image_transform=train_transforms, img_size=args.img_size)
-    val_dataset = MedicalImageWithQuantDataset(csv_file=args.val_csv, image_transform=val_transforms, img_size=args.img_size)
+    train_dataset = MedicalImageWithQuantDataset(csv_file=args.train_csv, image_transform=train_transforms, img_size=args.img_size, base_path=args.base_path)
+    val_dataset = MedicalImageWithQuantDataset(csv_file=args.val_csv, image_transform=val_transforms, img_size=args.img_size, base_path=args.base_path)
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4)
     val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)

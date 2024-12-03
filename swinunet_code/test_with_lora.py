@@ -41,7 +41,7 @@ def test_with_lora(args, device):
 
     # 테스트 데이터 로더 준비
     test_transforms = get_transforms(args.transform, args.img_size, is_train=False)
-    test_dataset = MedicalImageWithQuantDataset(csv_file=args.test_csv, image_transform=test_transforms, img_size=args.img_size)
+    test_dataset = MedicalImageWithQuantDataset(csv_file=args.test_csv, image_transform=test_transforms, img_size=args.img_size, base_path=args.base_path)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
 
     # 테스트 실행

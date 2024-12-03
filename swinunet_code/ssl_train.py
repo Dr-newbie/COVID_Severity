@@ -33,10 +33,10 @@ def ssl_train(args, device):
     train_transforms = get_transforms(args.transform, args.img_size, is_train=True)
     val_transforms = get_transforms(args.transform, args.img_size, is_train=False)
 
-    train_dataset = MedicalImageWithQuantDataset(csv_file=args.train_csv, image_transform=train_transforms, img_size=args.img_size)
+    train_dataset = MedicalImageWithQuantDataset(csv_file=args.train_csv, image_transform=train_transforms, img_size=args.img_size, base_path=args.base_path)
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4)
 
-    val_dataset = MedicalImageWithQuantDataset(csv_file=args.val_csv, image_transform=val_transforms, img_size=args.img_size)
+    val_dataset = MedicalImageWithQuantDataset(csv_file=args.val_csv, image_transform=val_transforms, img_size=args.img_size, base_path=args.base_path)
     val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
 
     # Early Stopping 설정
@@ -46,7 +46,7 @@ def ssl_train(args, device):
     for epoch in range(args.ssl_epochs):
         # Training step
         ssl_loss = ssl_train_epoch(
-            ssl_model, train_loader, optimizer_ssl, criterion_ssl, 
+            args, ssl_model, train_loader, optimizer_ssl, criterion_ssl, 
             scaler_ssl, device, epoch
         )
         # Validation step
